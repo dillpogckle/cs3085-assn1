@@ -53,7 +53,7 @@ public class Assign1 {
                     }
                 }
 
-            } else {
+            } else if (option.startsWith("-")) {
                 System.out.println("Unknown command line argument: " + option);
                 printHelp();
                 System.exit(-1);
