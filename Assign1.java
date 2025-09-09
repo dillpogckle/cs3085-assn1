@@ -16,8 +16,13 @@ public class Assign1 {
 
         while (i < args.length) {
             String option = args[i];
+            if (i + 1 >= args.length) {
+                System.out.println("Missing argument for " + option);
+                printHelp();
+                System.exit(-1);
+            }
 
-            if (option.equals("-fib")) {
+            else if (option.equals("-fib")) {
                 if (!isInteger(args[i + 1])) {
                     System.out.println("Fibonacci valid range is [0, 40]");
                 } else {
@@ -30,30 +35,40 @@ public class Assign1 {
                 }
 
             } else if (option.equals("-fac")) {
-                if (!isInteger(args[i + 1])) {
-                    System.out.println("Factorial valid range is [0, 2147483647]");
-                } else {
-                    int n = Integer.parseInt(args[++i]);
-                    if (n < 0) {
+                try {
+                    if (!isInteger(args[i + 1])) {
                         System.out.println("Factorial valid range is [0, 2147483647]");
                     } else {
-                        System.out.println("Factorial of " + n + " is " + factorial(n));
+                        int n = Integer.parseInt(args[++i]);
+                        if (n < 0) {
+                            System.out.println("Factorial valid range is [0, 2147483647]");
+                        } else {
+                            System.out.println("Factorial of " + n + " is " + factorial(n));
+                        }
                     }
+                }
+                catch (NumberFormatException e) {
+                    System.out.println("Factorial valid range is [0, 2147483647]");
                 }
 
             } else if (option.equals("-e")) {
-                if (i + 1 >= args.length || !isInteger(args[i + 1])) {
-                    System.out.println("Valid e iterations range is [1, 2147483647]");
-                } else {
-                    int n = Integer.parseInt(args[++i]);
-                    if (n < 1) {
+                try {
+                    if (!isInteger(args[i + 1])) {
                         System.out.println("Valid e iterations range is [1, 2147483647]");
                     } else {
-                        System.out.println("Value of e using " + n + " iterations is " + taylor(n));
+                        int n = Integer.parseInt(args[++i]);
+                        if (n < 1) {
+                            System.out.println("Valid e iterations range is [1, 2147483647]");
+                        } else {
+                            System.out.println("Value of e using " + n + " iterations is " + taylor(n));
+                        }
                     }
                 }
+                catch (NumberFormatException e) {
+                    System.out.println("Valid e iterations range is [1, 2147483647]");
+                }
 
-            } else if (option.startsWith("-")) {
+            } else{
                 System.out.println("Unknown command line argument: " + option);
                 printHelp();
                 System.exit(-1);
