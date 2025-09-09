@@ -18,7 +18,7 @@ public class Assign1 {
             String option = args[i];
 
             if (option.equals("-fib")) {
-                if (i + 1 >= args.length || !isInteger(args[i + 1])) {
+                if (!isInteger(args[i + 1])) {
                     System.out.println("Fibonacci valid range is [0, 40]");
                 } else {
                     int n = Integer.parseInt(args[++i]);
@@ -30,7 +30,7 @@ public class Assign1 {
                 }
 
             } else if (option.equals("-fac")) {
-                if (i + 1 >= args.length || !isInteger(args[i + 1])) {
+                if (!isInteger(args[i + 1])) {
                     System.out.println("Factorial valid range is [0, 2147483647]");
                 } else {
                     int n = Integer.parseInt(args[++i]);
